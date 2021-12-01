@@ -6,7 +6,7 @@ fun main() {
   val reader = Reader()
   val comparer = Comparer()
 
-  val lines = reader.readFile("/Users/serafinodangelillo/Workspace/AdventOfCode2021/src/main/resources/day1/input")
+  val lines = reader.readFile("day1/input")
 
   val measurements: MutableList<Int> = mutableListOf()
   for (n in 0..lines.size-3)
