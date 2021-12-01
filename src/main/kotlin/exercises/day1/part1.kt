@@ -14,14 +14,9 @@ enum class Trend {
   }
 }
 
-class Calculator {
-  fun getIncrements(): Int {
-    val reader = Reader()
-
-    val lines = reader.readFile("day1/input")
-
-    return lines
-      .zipWithNext { a, b -> Trend.compare(a.toInt(), b.toInt()) }
+class Part1 {
+  fun getIncrements()
+    = Reader().readFile("day1/input")
+      .zipWithNext { a, b -> Trend.compare(a.toInt(), b.toInt()) }  // execute the compare between items two by two
       .count { it == Trend.INCREASE }
-  }
 }
