@@ -2,34 +2,26 @@ package exercises.day1
 
 import common.Reader
 
-class Comparer {
-  fun compare(first: Int, second: Int): Trend
-      = when {
-    second > first -> Trend.INCREASE
-    second < first -> Trend.DECREASE
-    else -> Trend.NONE
-  }
-}
-
 enum class Trend {
-  INCREASE, DECREASE, NONE
+  INCREASE, DECREASE, NONE;
+
+  companion object {
+    fun compare(first: Int, second: Int): Trend = when {
+      second > first -> INCREASE
+      second < first -> DECREASE
+      else -> NONE
+    }
+  }
 }
 
-fun main() {
-  val reader = Reader()
-  val comparer = Comparer()
+class Calculator {
+  fun getIncrements(): Int {
+    val reader = Reader()
 
+    val lines = reader.readFile("day1/input")
 
-  val lines = reader.readFile("day1/input")
-
-  var increments = 0
-  for (n in 0..lines.size-2) {
-    val currentLine = lines[n].toInt()
-    val nextLine = lines[n+1].toInt()
-
-    if(comparer.compare(currentLine, nextLine) == Trend.INCREASE)
-      increments++
+    return lines
+      .zipWithNext { a, b -> Trend.compare(a.toInt(), b.toInt()) }
+      .count { it == Trend.INCREASE }
   }
-
-  println(increments)
 }

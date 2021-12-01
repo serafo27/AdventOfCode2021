@@ -4,7 +4,6 @@ import common.Reader
 
 fun main() {
   val reader = Reader()
-  val comparer = Comparer()
 
   val lines = reader.readFile("day1/input")
 
@@ -17,7 +16,7 @@ fun main() {
     val currentLine = measurements[n]
     val nextLine = measurements[n+1]
 
-    if(comparer.compare(currentLine, nextLine) == Trend.INCREASE)
+    if(Trend.compare(currentLine, nextLine) == Trend.INCREASE)
       increments++
   }
 
