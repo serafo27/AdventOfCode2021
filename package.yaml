@@ -23,18 +23,23 @@ dependencies:
 - base >= 4.7 && < 5
 
 library:
-  source-dirs: src
+  source-dirs: src/main/haskell
+  ghc-options: -Wall
+  exposed-modules: 
+  - Exercises.Day1.Part1 
 
 executables:
   advent-of-code2021-exe:
-    main:                Main.hs
-    source-dirs:         src/main/haskell
+    main: Main.hs
+    source-dirs: src/main/haskell
     ghc-options:
     - -threaded
     - -rtsopts
     - -with-rtsopts=-N
     dependencies:
     - advent-of-code2021
+    other-modules: 
+    - Exercises.Day1.Part1 
 
 tests:
   advent-of-code-2021-test:

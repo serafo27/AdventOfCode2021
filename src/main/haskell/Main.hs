@@ -1,7 +1,6 @@
-
 module Main where
 
-import Lib
+import Exercises.Day1.Part1 
 
 main :: IO ()
-main = someFunc
+main = executePart1
