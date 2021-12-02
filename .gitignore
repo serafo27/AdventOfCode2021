@@ -3,3 +3,5 @@ gradle
 .gradle/
 .DS_Store
 target/
+.stack-work/
+*.cabal

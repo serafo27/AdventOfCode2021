@@ -1,0 +1,9 @@
+{
+  "name": "Advent of code 2021",
+  "dockerFile": "Dockerfile",
+  "extensions": [
+    "justusadam.language-haskell",
+    "jcanero.hoogle-vscode",
+    "vans.haskero"
+  ]
+}
