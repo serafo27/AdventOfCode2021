@@ -12,5 +12,7 @@ Nor do you need a fancy computer; every problem has a solution that completes in
 ## How to run
 
 Kotlin -> use IntelliJ
+
 Rust -> use IntelliJ
+
 Haskell -> use command `stack run`
