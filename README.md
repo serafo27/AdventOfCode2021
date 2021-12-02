@@ -7,3 +7,12 @@ You don't need a computer science background to participate - just a little prog
 Nor do you need a fancy computer; every problem has a solution that completes in at most 15 seconds on ten-year-old hardware.
 
 [More information here](https://adventofcode.com/2021/about)
+
+
+## How to run
+
+Kotlin -> use IntelliJ
+
+Rust -> use IntelliJ
+
+Haskell -> use command `stack run`
