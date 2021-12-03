@@ -5,56 +5,52 @@ import common.Reader
 enum class MaxOccurrence(val value: Int) {
   ZERO(0), ONE(1), NONE(-1)
 }
+
+enum class Paramter {
+  OXYGEN, CO2
+}
+
 data class Occurrences(val zeroes: Int, val ones: Int)
 
 class Part2 {
 
   fun getResult(): Any {
+    val oxygen = getParameter(Paramter.OXYGEN)
+    val co2 = getParameter(Paramter.CO2)
+    return oxygen * co2
+  }
 
+  private fun getParameter(parameter: Paramter): Int {
     var matrix = Reader().readFile("day3/input")
       .map { it.toCharArray().toTypedArray() }
       .map { it.map { c -> c.digitToInt() } }
 
     var i = 0
     while (matrix.size > 1) {
-
       val column = getColumn(matrix, i)
-      var max = getMaxOccurrence(occurrences(column))
+      var max = getMaxOccurrence(parameter, column)
 
       if(max == MaxOccurrence.NONE)
-        max = MaxOccurrence.ONE
+        max = getNeutralMax(parameter)
 
-      matrix = matrix
-        .filter { row -> row[i] == max.value }
-
+      matrix = matrix.filter { row -> row[i] == max.value }
       i++
     }
 
-    val oxygen = toInt(matrix[0])
-
-    matrix = Reader().readFile("day3/input")
-      .map { it.toCharArray().toTypedArray() }
-      .map { it.map { c -> c.digitToInt() } }
-
-    i = 0
-    while (matrix.size > 1) {
-
-      val column = getColumn(matrix, i)
-      var max = getMinOccurrence(occurrences(column))
-
-      if(max == MaxOccurrence.NONE)
-        max = MaxOccurrence.ZERO
-
-      matrix = matrix
-        .filter { row -> row[i] == max.value }
-
-      i++
-    }
-
-    val co2 = toInt(matrix[0])
-
-    return oxygen * co2
+    return toInt(matrix[0])
   }
+
+  private fun getMaxOccurrence(parameter: Paramter, column: List<Int>)
+    = when (parameter) {
+        Paramter.OXYGEN -> getMaxOccurrence(occurrences(column))
+        Paramter.CO2 -> getMinOccurrence(occurrences(column))
+      }
+
+  private fun getNeutralMax(parameter: Paramter): MaxOccurrence
+    = when (parameter) {
+        Paramter.OXYGEN -> MaxOccurrence.ONE
+        Paramter.CO2 -> MaxOccurrence.ZERO
+      }
 
   private fun getColumn(matrix: List<List<Int>>, index: Int): List<Int>
     = getTransposeMatrix(matrix)[index]
@@ -94,8 +90,4 @@ class Part2 {
 
     return transpose.map { it.toTypedArray().toList() }
   }
-}
-
-fun main() {
-  println(Part2().getResult())
 }
